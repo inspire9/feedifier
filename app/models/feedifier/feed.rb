@@ -3,7 +3,7 @@ class Feedifier::Feed < ActiveRecord::Base
 
   belongs_to :feedable, polymorphic: true
   has_many :feed_items, class_name: 'Feedifier::FeedItem',
-    foreign_key: :feedifier_feed_id, dependent: :destroy
+    foreign_key: :feedifier_feed_id, dependent: :delete_all
 
   validates :name, presence:   true,
                    uniqueness: {scope: [:feedable_type, :feedable_id]}
